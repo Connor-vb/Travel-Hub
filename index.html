@@ -57,13 +57,73 @@
                     <div id="arrive-design"></div>
                   </div>
             </div>
-            
+            <!-- FROM/TO -->
+        <div id="flight-dates">
+            <div class="info-box">
+              <label for="">Departing Date</label>
+              <input type="text" id="depart-date" />
+            </div>
+            <div class="info-box" id="return-box">
+              <label for="">Return Date</label>
+              <input type="text" id="return-date" />
+            </div>
+          </div>
+          
+          <!-- PASSENGER INFO -->
+          <div id="flight-info">
+            <div class="info-box">
+              <label for="adults">Adults</label>
+              <select name="adults" id="adults">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <div class="info-box">
+              <label for="children">Children</label>
+              <select name="children" id="children">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="0">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="info-box">
+              <label for="class-type">Class</label>
+              <select name="class-type" id="class-type">
+                <option value="Economy">Economy</option>
+                <option value="Business">Business</option>
+                <option value="First">First Class</option>
+              </select>
+            </div>
+        </div>
+        
+          <!-- SEARCH BUTTON -->
+        <div id="flight-search">
+          <div class="info-box">
+            <input type="submit" id="search-flight" value="SEARCH FLIGHTS"/>
+          </div>
+        </div>
+
+      <div id="calender">
+        <div class="nav">
+          <button id="prev"><</button>
+          <p><span id="month"></span>
+            <span id="year"></span></p>
+          <button id="next">></button>
+        </div>
+        <table id="cal"></table>
+        </div>
+        
+  </div>
+  <div id="confirm"></div>
         </form>
     </section>
 
 
     <div class="container">
-        <p id="arrival-airport">Text</p>
+        <p id="arrival-airport"></p>
     </div>
 
  
