@@ -6,10 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="styles.css"/>
 
-    <title>Document</title>
+    <title>Travel Hub</title>
 
 </head>
 <body>
+    <header>
+        <h1 href="/">Travel Hub</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#arrivals">Arrivals</a>
+                </li>
+                    
+                <li>
+                    <a href="#departures">Departures</a>
+                </li>
+
+                <li>
+                    <a href="#restrictions">Restrictions</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="search">
+        <h3>Find Your Flight</h3>
+        <p>Tell us where you want to go!</p>
+        <form>
+                    <!-- Trip Type -->
+            <div id="flight-type">
+                <div class="info-box">
+                    <input type="radio" name="flight-type" value="round-trip" id="round-trip" checked />
+                    <label for="round-trip">Round Trip</label>
+                </div>
+                <div class="info-box">
+                    <input type="radio" name="flight-type" value="Single" id="one-way" />
+                    <label for="one-way">One Way</label>
+                </div>
+            </div>
+            <!-- Departurs & Arrivals -->
+            <div id="flight-location">
+                <div class="d-cities" id="departures">
+                  <label for="">Departing</label>
+                  <input type="text" id="dep-from" />
+                  <div id="depart-design"></div>
+                </div>
+                <div class="a-cities" id="arrivals">
+                    <label for="">Arriving</label>
+                    <input type="text" id="dep-to" />
+                    <div id="arrive-design"></div>
+                  </div>
+            </div>
+            
+        </form>
+    </section>
+
+
     <div class="container">
         <p id="arrival-airport">Text</p>
     </div>
