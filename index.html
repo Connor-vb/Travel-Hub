@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
 
     <title>Travel Hub</title>
 
@@ -28,48 +28,55 @@
             </ul>
         </nav>
     </header>
-    
-    <section class="search">
-        <h3>Find Your Flight</h3>
+   
+    <div id="search-form">
+      <div id="header">
+        <h1>Find Your Flight</h1>
         <p>Tell us where you want to go!</p>
-        <form>
-                    <!-- Trip Type -->
-            <div id="flight-type">
-                <div class="info-box">
-                    <input type="radio" name="flight-type" value="round-trip" id="round-trip" checked />
-                    <label for="round-trip">Round Trip</label>
-                </div>
-                <div class="info-box">
-                    <input type="radio" name="flight-type" value="Single" id="one-way" />
-                    <label for="one-way">One Way</label>
-                </div>
-            </div>
-            <!-- Departurs & Arrivals -->
-            <div id="flight-location">
-                <div class="info-box" id="departures">
-                  <label for="">Departing</label>
-                  <input type="text" id="dep-from" />
-                  <div id="depart-design"></div>
-                </div>
-                <div class="info-box" id="arrivals">
-                    <label for="">Arriving</label>
-                    <input type="text" id="dep-to" />
-                    <div id="arrive-design"></div>
-                  </div>
-            </div>
-            <!-- FROM/TO -->
-        <div id="flight-dates">
+      </div>
+      <section>
+        <div class="flight" id="flightbox">
+
+          <form id="flight-form">
+          <!-- Trip Type -->
+          <div id="flight-type">
             <div class="info-box">
-              <label for="">Departing Date</label>
-              <input type="text" id="depart-date" />
+              <input type="radio" name="flight-type" value="Return" id="return" checked />
+              <label for="return">Round Trip</label>
+            </div>
+            <div class="info-box">
+              <input type="radio" name="flight-type" value="Single" id="one-way" />
+              <label for="one-way">One Way</label>
+            </div>
+          </div>
+
+          <!-- Departure/Arrival Cities -->
+          <div id="flight-depart">
+            <div class="info-box">
+              <label for="">Departing From</label>
+              <input type="text" id="dep-from" />
+              <div id="depart-res"></div>
+            </div>
+            <div class="info-box" id="arrive-box">
+              <label for="">Arriving At</label>
+              <input type="text" id="dep-to" />
+              <div id="arrive-res"></div>
+            </div>
+          </div>
+        
+          <!-- Departure/Arrival Dates -->
+          <div id="flight-dates">
+            <div class="info-box">
+              <label for="">Departure Date</label>
+              <input type="text" id="leave-date" readonly />
             </div>
             <div class="info-box" id="return-box">
               <label for="">Return Date</label>
-              <input type="text" id="return-date" />
+              <input type="text" id="return-date" readonly />
             </div>
           </div>
-          
-          <!-- PASSENGER INFO -->
+
+          <!-- Passenger Info -->
           <div id="flight-info">
             <div class="info-box">
               <label for="adults">Adults</label>
@@ -92,21 +99,24 @@
             <div class="info-box">
               <label for="class-type">Class</label>
               <select name="class-type" id="class-type">
-                <option value="Economy">Economy</option>
-                <option value="Business">Business</option>
-                <option value="First">First Class</option>
+                <option value="Economy">ECONOMY</option>
+                <option value="Business">BUSINESS</option>
+                <option value="First">FIRST CLASS</option>
               </select>
             </div>
         </div>
-        
-          <!-- SEARCH BUTTON -->
+
+        <!-- Search Button -->
         <div id="flight-search">
           <div class="info-box">
-            <!-- <input type="submit" id="search-flight" value="SEARCH FLIGHTS"/> -->
-            <button id="search-flight">Search Flight</button>
+            <input type="submit" id="search-flight" value="SEARCH FLIGHTS"/>
           </div>
         </div>
-
+        
+        </form> 
+        </div>
+      </section>
+       
       <div id="calender">
         <div class="nav">
           <button id="prev"><</button>
@@ -117,19 +127,15 @@
         <table id="cal"></table>
         </div>
         
-  </div>
-  <div id="confirm"></div>
-        </form>
-    </section>
-
+    </div>
+    <div id="confirm"></div>
 
     <div class="container">
         <p id="arrival-airport"></p>
     </div>
 
  
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="./Assets/js/script.js"></script>
+
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
