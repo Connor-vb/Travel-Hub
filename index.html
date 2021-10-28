@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./assets/css/style.css" />
 
     <title>Travel Hub</title>
@@ -42,11 +45,11 @@
           <!-- Trip Type -->
           <div id="flight-type">
             <div class="info-box">
-              <input type="radio" name="flight-type" value="Return" id="return" checked />
+              <input type="radio" name="flight-type" value="Return" id="round-trip" checked />
               <label for="return">Round Trip</label>
             </div>
             <div class="info-box">
-              <input type="radio" name="flight-type" value="Single" id="one-way" />
+              <input type="radio" onclick="javascript:yesnoCheck();" name="flight-type" value="Single" id="one-way" />
               <label for="one-way">One Way</label>
             </div>
           </div>
@@ -69,11 +72,11 @@
           <div id="flight-dates">
             <div class="info-box">
               <label for="">Departure Date</label>
-              <input type="text" id="leave-date"/>
+              <input type="text" name="datepicker" id="leave-date">
             </div>
             <div class="info-box" id="return-box">
               <label for="">Return Date</label>
-              <input type="text" id="return-date"/>
+              <input type="text" name="datepicker" id="return-date"/>
             </div>
           </div>
 
@@ -135,8 +138,22 @@
         <p id="arrival-airport"></p>
     </div>
 
- 
-
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
+
+    <script>
+      $("#leave-date").click((function() {
+        $(this).datepicker();
+        formatDate:('yy-mm-dd')
+        duration: 'fast'
+      }));
+      $("#return-date").click((function() {
+        $(this).datepicker();
+        duration: 'fast'
+      }));
+    </script>
 </body>
 </html>
