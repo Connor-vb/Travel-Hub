@@ -1,3 +1,12 @@
+$(function() {
+   $( "#leave-date").datepicker()
+   $( "#return-date").datepicker()
+   var dateFormatD=$("#leave-date").datepicker("show","option", dateFormatD);
+   $("#leave-date").datepicker("option", "dateFormat", "yy-mm-dd")
+   var dateFormatR=$("#return-date").datepicker("show","option", dateFormatR);
+   $("#return-date").datepicker("option", "dateFormat", "yy-mm-dd")
+});
+
 $("#search-flight").click(function(event){
     event.preventDefault();
 });
