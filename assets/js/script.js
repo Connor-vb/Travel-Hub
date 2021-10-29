@@ -1,6 +1,14 @@
 $(function() {
-   $( "#leave-date").datepicker()
-   $( "#return-date").datepicker()
+   $( "#leave-date").datepicker({
+      changeMonth: true,
+      changeYear: true,
+      autoSize: true
+   });
+   $( "#return-date").datepicker({
+      changeMonth: true,
+      changeYear: true,
+      autoSize: true
+   });
    var dateFormatD=$("#leave-date").datepicker("show","option", dateFormatD);
    $("#leave-date").datepicker("option", "dateFormat", "yy-mm-dd")
    var dateFormatR=$("#return-date").datepicker("show","option", dateFormatR);
@@ -17,8 +25,9 @@ $("#search-flight").click(function (){
    var arrivalCity = $("#dep-to").val();
    var departureDate = $("#leave-date").val();
    var returnDate = $("#return-date").val();
+      console.log (departureCity, arrivalCity, departureDate, returnDate)
 
-   var flightResponse = fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${departureCity}/${arrivalCity}/${departureDate}?inboundpartialdate=${returnDate}`,
+   var flightResponse = fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${departureCity}-sky/${arrivalCity}-sky/${departureDate}?inboundpartialdate=${returnDate}`,
       {
          "method": "GET",
          "headers": {
