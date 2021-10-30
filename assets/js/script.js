@@ -26,7 +26,7 @@ $("#search-flight").click(function (){
    var departureDate = $("#leave-date").val();
    var returnDate = $("#return-date").val();
       console.log (departureCity, arrivalCity, departureDate, returnDate)
-
+   var appendCard= `<div class="card" style="width: 18rem;"><img src="..." class="card-img-top" alt="..."><div class="card-body"><h5 class="card-title">Card title</h5><p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div>`
    var flightResponse = fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${departureCity}-sky/${arrivalCity}-sky/${departureDate}?inboundpartialdate=${returnDate}`,
       {
          "method": "GET",
@@ -38,9 +38,13 @@ $("#search-flight").click(function (){
       .then((response) => {return response.json()})
       .then(function(flightResponse){
          console.log(flightResponse)  
+         console.log(flightResponse.Carriers)  
+         $("#carrier").append('<li>'+JSON.stringify(flightResponse.Carriers[0].Name)+'</li>');
+         $("#carrier").append(`<div class="card" style="width: 18rem;"><img src="..." class="card-img-top" alt="..."><div class="card-body">${flightResponse.Carriers[0].Name}<h5 class="card-title">Card title</h5><p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div>`);
       })
-   console.log(fetch)
-});
+      .catch(err => {
+         alert(err);
+      });});
 
 
 
