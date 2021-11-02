@@ -21,8 +21,10 @@ $("#search-flight").click(function(event){
 
 
 $("#search-flight").click(function (){
-   var departureCity =  $("#dep-from").val();
-   var arrivalCity = $("#dep-to").val();
+   var depCity =  $("#dep-from").val();
+   var departureCity = depCity.toUpperCase();
+   var arriveCity = $("#dep-to").val();
+   var arrivalCity = arriveCity.toUpperCase();
    var departureDate = $("#leave-date").val();
    var returnDate = $("#return-date").val();
    var classType = $("#class-type").val();
