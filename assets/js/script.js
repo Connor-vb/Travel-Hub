@@ -25,14 +25,16 @@ $("#search-flight").click(function (){
    var arrivalCity = $("#dep-to").val();
    var departureDate = $("#leave-date").val();
    var returnDate = $("#return-date").val();
-      console.log (departureCity, arrivalCity, departureDate, returnDate)
+   var classType = $("#class-type").val();
+   var passengerNo = $("#adults").val();
+      console.log (departureCity, arrivalCity, departureDate, returnDate,classType, passengerNo)
    var appendCard= `<div class="card" style="width: 18rem;"><img src="..." class="card-img-top" alt="..."><div class="card-body"><h5 class="card-title">Card title</h5><p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div>`
-   var flightResponse = fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${departureCity}-sky/${arrivalCity}-sky/${departureDate}?inboundpartialdate=${returnDate}`,
+   var flightResponse = fetch(`https://priceline-com-provider.p.rapidapi.com/v1/flights/search?sort_order=PRICE&location_departure=${departureCity}&date_departure=${departureDate}&class_type=${classType}&location_arrival=${arrivalCity}&itinerary_type=ROUND_TRIP&date_departure_return=${returnDate}&number_of_passengers=${passengerNo}`,
       {
          "method": "GET",
          "headers": {
-               "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-               "x-rapidapi-key": "2c2cf48dfbmshceb6bdf988a07c2p1e2ad2jsn6289c7890bc2"
+               "x-rapidapi-host": "priceline-com-provider.p.rapidapi.com",
+               "x-rapidapi-key": "59f7e69363mshd079e2ca36399cap1b8406jsn3dc47a20df7c"
          }
       })
       .then((response) => {return response.json()})
