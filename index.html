@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
     <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="./assets/css/style.css" />
 
@@ -44,15 +42,12 @@
 
           <form id="flight-form">
           <!-- Trip Type -->
-          <div id="flight-type">
-            <div class="info-box">
-              <input type="radio" name="flight-type" value="Return" id="round-trip" checked />
-              <label for="return">Round Trip</label>
-            </div>
-            <div class="info-box">
-              <input type="radio" onclick="javascript:yesnoCheck();" name="flight-type" value="Single" id="one-way" />
-              <label for="one-way">One Way</label>
-            </div>
+          <div class="info-box">
+            <label for="flight-type">Flight Type</label>
+            <select name="flight-type" id="flight-type">
+              <option value="ROUND_TRIP">Round Trip</option>
+              <option value="ONE_WAY">One Way</option>
+            </select>
           </div>
 
           <!-- Departure/Arrival Cities -->
@@ -102,6 +97,16 @@
                 <option value="ECO">ECONOMY</option>
                 <option value="BUS">BUSINESS</option>
                 <option value="FST">FIRST CLASS</option>
+              </select>
+            </div>
+            <div class="info-box">
+              <label for="price-range">Max Price</label>
+              <select name="price-range" id="price-range">
+                <option value="250">$250</option>
+                <option value="500">$500</option>
+                <option value="1000">$1000</option>
+                <option value="1500">$1500</option>
+                <option value="2000">$2000</option>
               </select>
             </div>
         </div>
