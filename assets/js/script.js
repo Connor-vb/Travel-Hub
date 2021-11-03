@@ -21,6 +21,30 @@ $("#search-flight").click(function(event){
 
 
 $("#search-flight").click(function (){
+   var modal = document.getElementById("myModal");
+
+
+var btn = document.getElementById("search-flight");
+
+
+var span = document.getElementsByClassName("close")[0];
+
+
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
    var flightType = $("#flight-type").val();
    var depCity =  $("#dep-from").val();
    var departureCity = depCity.toUpperCase();
@@ -37,7 +61,7 @@ $("#search-flight").click(function (){
       {
          "method": "GET",
          "headers": {
-               "Authorization": "Bearer xt8yGKQ37i1jzX2pr8mjuKGQf2UV",
+               "Authorization": "Bearer BsSqha9Y5nPj9MOwR5mEJC7bAtzw",
          }
       })
       .then((response) => {return response.json()})
@@ -49,7 +73,7 @@ $("#search-flight").click(function (){
          {
             "method": "GET",
             "headers": {
-                  "Authorization": "Bearer xt8yGKQ37i1jzX2pr8mjuKGQf2UV",
+                  "Authorization": "Bearer BsSqha9Y5nPj9MOwR5mEJC7bAtzw",
             }
          })
          .then((response) => {return response.json()})
@@ -57,6 +81,7 @@ $("#search-flight").click(function (){
             var arrivalCityCode = arrivalResponse.data[0].iataCode;
             var arrivalState = arrivalResponse.data[0].address.stateCode;
       
+
          fetch ('https://cors-anywhere.herokuapp.com/https://api.covidtracking.com/v1/states/'+ arrivalState +'/current.json')
             .then((response) => {return response.json()})
             .then(function(covidResults) {
@@ -79,12 +104,12 @@ $("#search-flight").click(function (){
                   for (i=0; i < providerCoverage.filteredTripSummary.airline.length; i++){
                      var airlineCode = providerCoverage.filteredTripSummary.airline[i].code
                      var fareAmount = providerCoverage.filteredTripSummary.airline[i].lowestTotalFare.amount
-                     var divContainer = $('<div> </div>')
+                     var divModalbody = $('<div> </div>')
                      
-                     divContainer.append(airlineCode + "   ");
-                     divContainer.append('$' + fareAmount);
+                     divModalbody.append(airlineCode + "   ");
+                     divModalbody.append('$' + fareAmount);
 
-                     $("#carrier").append(divContainer);
+                     $("#carrier").append(divModalbody);
                   
          };
       })
