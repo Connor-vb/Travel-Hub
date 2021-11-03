@@ -60,7 +60,9 @@ $("#search-flight").click(function (){
          fetch ('https://cors-anywhere.herokuapp.com/https://api.covidtracking.com/v1/states/'+ arrivalState +'/current.json')
             .then((response) => {return response.json()})
             .then(function(covidResults) {
-               console.log(covidResults.deathIncrease, covidResults.hospitalizedCurrently, covidResults.positiveIncrease)
+               //var deathInc = covidResults.deathIncrease
+               //var currentHospitalization = covidResults.hospitalizedCurrently
+               //var positiveTestInc = covidResults.positiveIncrease
             })
    
             fetch(`https://priceline-com-provider.p.rapidapi.com/v1/flights/search?sort_order=PRICE&location_departure=${departureCityCode}&date_departure=${departureDate}&class_type=${classType}&location_arrival=${arrivalCityCode}&itinerary_type=${flightType}&date_departure_return=${returnDate}&number_of_passengers=${passengerNo}&price_max=${maxPrice}&number_of_stops=0`,
