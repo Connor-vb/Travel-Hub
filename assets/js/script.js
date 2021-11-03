@@ -37,7 +37,7 @@ $("#search-flight").click(function (){
       {
          "method": "GET",
          "headers": {
-               "Authorization": "Bearer ELYKK6yo9MY9URB4A7TQwgedOFSP",
+               "Authorization": "Bearer tvjcYZAhs74m4xgvcRK4CAhEyOxP",
          }
       })
       .then((response) => {
@@ -56,7 +56,7 @@ $("#search-flight").click(function (){
       {
          "method": "GET",
          "headers": {
-               "Authorization": "Bearer ELYKK6yo9MY9URB4A7TQwgedOFSP",
+               "Authorization": "Bearer tvjcYZAhs74m4xgvcRK4CAhEyOxP",
          }
       })
       .then((response) => {

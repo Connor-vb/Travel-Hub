@@ -137,7 +137,7 @@ header nav ul li a:hover {
   margin-top: 20px;
   flex: 1;
   border-right: 20px solid transparent;
-  border-bottom: 1px dotted var(--tertiary-color);
+  border-bottom: 2px dashed var(--tertiary-color);
 }
 .info-box:last-child {
   border-right: none;
@@ -161,7 +161,7 @@ header nav ul li a:hover {
 #flight-type {
   display: flex;
   justify-content: flex-start;
-  border-bottom: 1px dotted var(--tertiary-color);
+  /* border-bottom: 2px dotted var(--tertiary-color); */
 }
 #flight-type .info-box {
   flex: 0 1 25%;
@@ -172,7 +172,7 @@ header nav ul li a:hover {
 #flight-depart {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px dotted var(--tertiary-color);
+  /* border-bottom: 1px dotted var(--tertiary-color); */
 }
 #flight-depart .info-box {
   position: relative;
@@ -183,7 +183,7 @@ header nav ul li a:hover {
 }
 #depart-res p, #arrive-res p {
   padding: 7px 2px;
-  border-bottom: 1px dotted var(--tertiary-color);
+  /* border-bottom: 1px dotted var(--tertiary-color); */
 }
 #depart-res p:hover, #arrive-res p:hover {
   background: #EDEDED;
@@ -192,12 +192,12 @@ header nav ul li a:hover {
 
 #flight-dates {
   display: flex;
-  border-bottom: 1px dotted var(--tertiary-color);
+  /* border-bottom: 1px dotted var(--tertiary-color); */
 }
 
 #flight-info {
   display: flex;
-  border-bottom: 1px dotted var(--tertiary-color);
+  /* border-bottom: 1px dotted var(--tertiary-color); */
 }
 
 #flight-search .info-box {
