@@ -37,7 +37,7 @@ $("#search-flight").click(function (){
       {
          "method": "GET",
          "headers": {
-               "Authorization": "Bearer YVTPncYn0VKdzijNj2E8SSqjnAjU",
+               "Authorization": "Bearer xt8yGKQ37i1jzX2pr8mjuKGQf2UV",
          }
       })
       .then((response) => {return response.json()})
@@ -49,7 +49,7 @@ $("#search-flight").click(function (){
          {
             "method": "GET",
             "headers": {
-                  "Authorization": "Bearer YVTPncYn0VKdzijNj2E8SSqjnAjU",
+                  "Authorization": "Bearer xt8yGKQ37i1jzX2pr8mjuKGQf2UV",
             }
          })
          .then((response) => {return response.json()})
@@ -57,10 +57,10 @@ $("#search-flight").click(function (){
             var arrivalCityCode = arrivalResponse.data[0].iataCode;
             var arrivalState = arrivalResponse.data[0].address.stateCode;
       
-         fetch ('https://cors-anywhere.herokuapp.com/https://api.covidtracking.com/v1/states/${}/current.json')
+         fetch ('https://cors-anywhere.herokuapp.com/https://api.covidtracking.com/v1/states/'+ arrivalState +'/current.json')
             .then((response) => {return response.json()})
             .then(function(covidResults) {
-               console.log(covidResults)
+               console.log(covidResults.deathIncrease, covidResults.hospitalizedCurrently, covidResults.positiveIncrease)
             })
    
             fetch(`https://priceline-com-provider.p.rapidapi.com/v1/flights/search?sort_order=PRICE&location_departure=${departureCityCode}&date_departure=${departureDate}&class_type=${classType}&location_arrival=${arrivalCityCode}&itinerary_type=${flightType}&date_departure_return=${returnDate}&number_of_passengers=${passengerNo}&price_max=${maxPrice}&number_of_stops=0`,
