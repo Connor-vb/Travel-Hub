@@ -21,30 +21,6 @@ $("#search-flight").click(function(event){
 
 
 $("#search-flight").click(function (){
-   var modal = document.getElementById("myModal");
-
-
-var btn = document.getElementById("search-flight");
-
-
-var span = document.getElementsByClassName("close")[0];
-
-
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
    var flightType = $("#flight-type").val();
    var depCity =  $("#dep-from").val();
    var departureCity = depCity.toUpperCase();
@@ -61,58 +37,65 @@ window.onclick = function(event) {
       {
          "method": "GET",
          "headers": {
-               "Authorization": "Bearer BsSqha9Y5nPj9MOwR5mEJC7bAtzw",
+               "Authorization": "Bearer ELYKK6yo9MY9URB4A7TQwgedOFSP",
          }
       })
-      .then((response) => {return response.json()})
+      .then((response) => {
+         return response.json()
+      })
       .then(function(departureResponse){
+         console.log (departureResponse.data)
+         if (!departureResponse.data) {
+            console.log ("error")
+            document.getElementById ("myModal").setAttribute ("class", "modal is-active")
+         }
          var departureCityCode = departureResponse.data[0].iataCode
       
 
       fetch(`https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${arrivalCity}&page%5Blimit%5D=10&page%5Boffset%5D=0&sort=analytics.travelers.score&view=FULL`,
-         {
-            "method": "GET",
-            "headers": {
-                  "Authorization": "Bearer BsSqha9Y5nPj9MOwR5mEJC7bAtzw",
-            }
-         })
-         .then((response) => {return response.json()})
-         .then(function(arrivalResponse){
-            var arrivalCityCode = arrivalResponse.data[0].iataCode;
-            var arrivalState = arrivalResponse.data[0].address.stateCode;
+      {
+         "method": "GET",
+         "headers": {
+               "Authorization": "Bearer ELYKK6yo9MY9URB4A7TQwgedOFSP",
+         }
+      })
+      .then((response) => {
+         return response.json()
+      })
+      .then(function(arrivalResponse){
+         
+         console.log (arrivalResponse.data)
+         if (!arrivalResponse.data) {
+            console.log ("error")
+            document.getElementById ("myModal").setAttribute ("class", "modal is-active")
+         }
+
+         var arrivalCityCode = arrivalResponse.data[0].iataCode;
       
 
-         fetch ('https://cors-anywhere.herokuapp.com/https://api.covidtracking.com/v1/states/'+ arrivalState +'/current.json')
-            .then((response) => {return response.json()})
-            .then(function(covidResults) {
-               //var deathInc = covidResults.deathIncrease
-               //var currentHospitalization = covidResults.hospitalizedCurrently
-               //var positiveTestInc = covidResults.positiveIncrease
-            })
+   var appendCard= `<div class="card" style="width: 18rem;"><img src="..." class="card-img-top" alt="..."><div class="card-body"><h5 class="card-title">Card title</h5><p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div>`
    
-            fetch(`https://priceline-com-provider.p.rapidapi.com/v1/flights/search?sort_order=PRICE&location_departure=${departureCityCode}&date_departure=${departureDate}&class_type=${classType}&location_arrival=${arrivalCityCode}&itinerary_type=${flightType}&date_departure_return=${returnDate}&number_of_passengers=${passengerNo}&price_max=${maxPrice}&number_of_stops=0`,
-               {
-                  "method": "GET",
-                  "headers": {
-                        "x-rapidapi-host": "priceline-com-provider.p.rapidapi.com",
-                        "x-rapidapi-key": "59f7e69363mshd079e2ca36399cap1b8406jsn3dc47a20df7c"
-                  }
-               })
-               .then((response) => {return response.json()})
-               .then(function(providerCoverage){
-                  console.log(providerCoverage)
-                  for (i=0; i < providerCoverage.filteredTripSummary.airline.length; i++){
-                     var airlineCode = providerCoverage.filteredTripSummary.airline[i].code
-                     var fareAmount = providerCoverage.filteredTripSummary.airline[i].lowestTotalFare.amount
-                     var divModalbody = $('<div> </div>')
-                     
-                     divModalbody.append(airlineCode + "   ");
-                     divModalbody.append('$' + fareAmount);
-
-                     $("#carrier").append(divModalbody);
-                  
-         };
+   fetch(`https://priceline-com-provider.p.rapidapi.com/v1/flights/search?sort_order=PRICE&location_departure=${departureCityCode}&date_departure=${departureDate}&class_type=${classType}&location_arrival=${arrivalCityCode}&itinerary_type=${flightType}&date_departure_return=${returnDate}&number_of_passengers=${passengerNo}&price_max=${maxPrice}&number_of_stops=0`,
+      {
+         "method": "GET",
+         "headers": {
+               "x-rapidapi-host": "priceline-com-provider.p.rapidapi.com",
+               "x-rapidapi-key": "59f7e69363mshd079e2ca36399cap1b8406jsn3dc47a20df7c"
+         }
       })
+      .then((response) => {return response.json()})
+      .then(function(providerCoverage){
+         //console.log(providerCoverage)  
+         console.log(providerCoverage)
+         for (i=0; i < 6; i++){
+            console.log(providerCoverage.airline[i].name)
+         }
+         // $("#carrier").append('<li>'+JSON.stringify(providerCoverage.airline[0].name)+'</li>');
+         // $("#carrier").append(`<div class="card" style="width: 18rem;"><img src="..." class="card-img-top" alt="..."><div class="card-body">${providerCoverage.airline[0].name}<h5 class="card-title">Card title</h5><p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div>`);
+      })
+      .catch(err => {
+         alert(err);
+      });
    });
    });
 });

@@ -1,46 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
-    <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="./assets/css/style.css" />
 
-    <title>Travel Hub</title>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+  <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./assets/css/style.css" />
+
+  <title>Travel Hub</title>
 
 </head>
+
 <body>
-    <header>
-      <h1>
-        <a href="/">Travel Hub</a>
+  <header>
+    <nav class="navbar is-full" role="navigation" aria-label="main navigation">
+      <h1 class="navbar-brand">
+        <a class="navbar-item" href="/">Travel Hub</a>
       </h1>
-        <nav>
-            <ul>
-                <li>
-                    <a href="#arrivals">Arrivals</a>
-                </li>
-                    
-                <li>
-                    <a href="#departures">Departures</a>
-                </li>
+      <nav>
+        <ul class="navbar-start">
+          <li>
+            <a class="navbar-item" href="#arrivals">Arrivals</a>
+          </li>
 
-                <li>
-                    <a href="#hotels">Hotels</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-   
-    <div id="search-form">
-      <div id="search-header">
-        <h1>Find Your Flight</h1>
-      </div>
-      <section>
-        <div class="flight" id="flightbox">
+          <li>
+            <a class="navbar-item" href="#departures">Departures</a>
+          </li>
 
-          <form id="flight-form">
+          <li>
+            <a class="navbar-item" href="#hotels">Hotels</a>
+          </li>
+        </ul>
+      </nav>
+    </nav>
+  </header>
+
+  <div id="search-form">
+    <div id="search-header">
+      <h1>Find Your Flight</h1>
+    </div>
+    <section>
+      <div class="flight" id="flightbox">
+
+        <form id="flight-form">
           <!-- Trip Type -->
           <div class="info-box">
             <label for="flight-type">Flight Type</label>
@@ -63,7 +67,7 @@
               <div id="arrive-res"></div>
             </div>
           </div>
-        
+
           <!-- Departure/Arrival Dates -->
           <div id="flight-dates">
             <div class="info-box">
@@ -72,7 +76,7 @@
             </div>
             <div class="info-box" id="return-box">
               <label for="">Return Date</label>
-              <input type="text" name="datepicker" id="return-date"/>
+              <input type="text" name="datepicker" id="return-date" />
             </div>
           </div>
 
@@ -109,58 +113,55 @@
                 <option value="2000">$2000</option>
               </select>
             </div>
-        </div>
-
-        <!-- Search Button -->
-        <div id="flight-search">
-          <div class="info-box">
-             <!-- Trigger/Open The Modal -->
-            <input type="submit" id="search-flight" value="SEARCH FLIGHTS"/>
-                         
-
-                          <!-- The Modal -->
-                          <div id="myModal" class="modal">
-            
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                              <!-- <div class="modal-header"> -->
-                                <span class="close">&times;</span>
-                                <!-- <h2>Modal Header</h2> -->
-                              </div>
-                              <div class="modalbody">
-                              <div id="carrier">
-                              </div>
           </div>
-        </div>
-        
-        </form> 
-        </div>
-      </section>
-       
-      <div id="calender">
-        <div class="nav">
-          <button id="prev"></button>
-          <!-- <p><span id="month"></span>
+
+          <!-- Search Button -->
+          <div id="flight-search">
+            <div class="info-box">
+              <!-- Trigger/Open The Modal -->
+              <input type="submit" id="search-flight" value="SEARCH FLIGHTS" />
+              
+              <!-- The Modal -->
+              <div id="myModal" class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                  <p>
+                    The information you entered is invalid. Please enter a 3-letter airport code.
+                  </p>
+                  <button class="modal-close is-large" aria-label="close"></button>
+                  <button class="button">Cancel</button>
+                </div>
+              </div>
+
+        </form>
+      </div>
+    </section>
+
+    <div id="calender">
+      <div class="nav">
+        <button id="prev"></button>
+        <!-- <p><span id="month"></span>
             <span id="year"></span></p> -->
-          <button id="next">></button>
-        </div>
-        <table id="cal"></table>
-        </div>
-        
-    </div>
-    <div id="confirm"></div>
-
-    <div class="container">
-        <p id="arrival-airport"></p>
-    </div>
-    
-
+        <button id="next">></button>
+      </div>
+      <table id="cal"></table>
     </div>
 
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="./assets/js/script.js"></script>
+  </div>
+  <div id="confirm"></div>
+
+  <div class="container">
+    <p id="arrival-airport"></p>
+  </div>
+
+
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
+
 </html>

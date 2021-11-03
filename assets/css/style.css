@@ -87,6 +87,17 @@ header nav ul li a:hover {
   text-shadow: none;
 }
 
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--tertiary-color);
+}
+
+.navbar-item {
+  color: var(--primary-color);
+}
+
 #search-form {
   border: 1px var(--tertiary-color);
   margin: 20px 0 0 0;
@@ -126,6 +137,7 @@ header nav ul li a:hover {
   margin-top: 20px;
   flex: 1;
   border-right: 20px solid transparent;
+  border-bottom: 1px dotted var(--tertiary-color);
 }
 .info-box:last-child {
   border-right: none;
@@ -388,7 +400,11 @@ table td {
   }
   header h1 {
     justify-content: center;
-    
+    text-align: center;
+    align-items: center;
+  }
+  .navbar {
+    text-align: center;
   }
   #flightbox, #search-header {
     justify-content: center;
