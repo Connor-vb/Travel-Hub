@@ -31,6 +31,7 @@ $("#search-flight").click(function () {
    var classType = $("#class-type").val();
    var maxPrice = $("#price-range").val();
    var passengerNo = $("#adults").val();
+
    console.log(departureCity, arrivalCity, departureDate, returnDate, classType, maxPrice, passengerNo)
 
    // Let them know you're searching
@@ -39,26 +40,27 @@ $("#search-flight").click(function () {
    $('.carrier--list').empty();
    $('.carrier--no-found').empty();
 
+
    fetch(`https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${departureCity}&page%5Blimit%5D=10&page%5Boffset%5D=0&sort=analytics.travelers.score&view=FULL`,
       {
          "method": "GET",
          "headers": {
+
             "Authorization": "Bearer TGrf7jlloUVQoeZZ23hw6BGZhPrp",
          }
       })
       .then((response) => {
          return response.json()
       })
+
       .then(function (departureResponse) {
          console.log("Departure Response", departureResponse.data)
-
 
          if (!departureResponse.data) {
             console.log("error")
             document.getElementById("myModal").setAttribute("class", "modal is-active")
          }
          var departureCityCode = departureResponse.data[0].iataCode
-
 
          fetch(`https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${arrivalCity}&page%5Blimit%5D=10&page%5Boffset%5D=0&sort=analytics.travelers.score&view=FULL`,
             {
@@ -114,6 +116,7 @@ $("#search-flight").click(function () {
             });
       });
 });
+
 
 
 
