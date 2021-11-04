@@ -47,7 +47,7 @@ $("#search-flight").click(function () {
          "method": "GET",
          "headers": {
 
-            "Authorization": "Bearer GcTNfNU8MswWPoCnu4lKw4N7x3Ze",
+            "Authorization": "Bearer t8rRNGzrnIICdv4ydoaWNgrcPIb8",
          }
       })
       .then((response) => {
@@ -67,7 +67,7 @@ $("#search-flight").click(function () {
             {
                "method": "GET",
                "headers": {
-                  "Authorization": "Bearer GcTNfNU8MswWPoCnu4lKw4N7x3Ze",
+                  "Authorization": "Bearer t8rRNGzrnIICdv4ydoaWNgrcPIb8",
                }
             })
             .then((response) => {
@@ -103,17 +103,25 @@ $("#search-flight").click(function () {
                      })
                      .then((response) => { return response.json() })
                      .then(function(providerCoverage){
+                        console.log(providerCoverage);
                         $('.carrier--title').text('Provided Airlines Results');
                         if (providerCoverage && providerCoverage.filteredTripSummary != null) {
                            for (i=0; i < providerCoverage.filteredTripSummary.airline.length; i++) {
                            var airlineCode = providerCoverage.filteredTripSummary.airline[i].code.toString()
+                           for(j=0; j <providerCoverage.airline.length; j++){
+                              if(airlineCode === providerCoverage.airline[j].code){
+                                 $(".carrier--list").append('<li>' + providerCoverage.airline[j].name + '</li>');//Replace Airline code with Airline Name
+                              }
+                           }
                            var fareAmount = providerCoverage.filteredTripSummary.airline[i].lowestTotalFare.amount.toString()
-                              $(".carrier--list").append('<li>' + airlineCode + '</li>');
+                              
                               $(".carrier--list").append('<li> $' + fareAmount + '</li>');
                            }
+
                         } else {
                            $(".carrier-no-found").text('Uh oh! Looks like there were no airlines found for this search.');
                         }
+                        $("#flightContent").empty()//Empty Modal Content
                         var flightContainer = $("<div> </div>");
                      
                         flightContainer.append("<ul> Important Information before you travel to " + arrivalState + ": </ul>");
@@ -130,7 +138,7 @@ $("#search-flight").click(function () {
                         $("#flightContent").append(flightContainer)
                         $("#flightInfo").attr("class", "modal is-active")
                         $("#cancel").click(function(){
-                           $("#flightInfo").attr("class", "modal-close")
+                           $("#flightInfo").attr("class", "modal")
                         });
                   
                         })
