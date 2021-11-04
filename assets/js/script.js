@@ -21,6 +21,7 @@ $("#search-flight").click(function (event) {
 
 
 $("#search-flight").click(function () {
+
    var flightType = $("#flight-type").val();
    var depCity = $("#dep-from").val();
    var departureCity = depCity.toUpperCase();
@@ -46,7 +47,7 @@ $("#search-flight").click(function () {
          "method": "GET",
          "headers": {
 
-            "Authorization": "Bearer mTfOVJor1fikAEAB0yvbQBCGdqYp",
+            "Authorization": "Bearer GcTNfNU8MswWPoCnu4lKw4N7x3Ze",
          }
       })
       .then((response) => {
@@ -66,7 +67,7 @@ $("#search-flight").click(function () {
             {
                "method": "GET",
                "headers": {
-                  "Authorization": "Bearer mTfOVJor1fikAEAB0yvbQBCGdqYp",
+                  "Authorization": "Bearer GcTNfNU8MswWPoCnu4lKw4N7x3Ze",
                }
             })
             .then((response) => {
@@ -89,7 +90,7 @@ $("#search-flight").click(function () {
                .then(function(covidResults) {
                
                   console.log("Heres the codes", departureCityCode, arrivalCityCode)
-                  var url = `https://priceline-com-provider.p.rapidapi.com/v1/flights/search?sort_order=PRICE&location_departure=${departureCityCode}&date_departure=${departureDate}&class_type=${classType}&location_arrival=${arrivalCityCode}&itinerary_type=${flightType}&date_departure_return=${returnDate}&number_of_passengers=${passengerNo}&price_max=${maxPrice}&number_of_stops=0`
+                  var url = `https://priceline-com-provider.p.rapidapi.com/v1/flights/search?sort_order=PRICE&location_departure=${departureCityCode}&date_departure=${departureDate}&class_type=${classType}&location_arrival=${arrivalCityCode}&itinerary_type=${flightType}&date_departure_return=${returnDate}&number_of_passengers=${passengerNo}&price_max=${maxPrice}&number_of_stops=1`
                   console.log("heres provider coverage url", url)
                   
                   fetch(url,
