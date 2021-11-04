@@ -284,8 +284,19 @@ table td {
   font-weight: 600;
 }
 /* Carrier Card Cleanup */
-#carrier li {
-  color: rgba(255, 255, 255, 0.0);
+.carrier h1 {
+  color: white;
+  font-size: 35px;
+  border-bottom: 1px solid whitesmoke;
+  margin: 20px;
+}
+
+
+.carrier li, .carrier div {
+  color: white;
+  font-size: 25px;
+  list-style-type: none;
+  margin: 20px;
 }
   /* The Modal (background) */
   .modal {
