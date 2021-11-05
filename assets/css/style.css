@@ -300,16 +300,32 @@ table td {
 }
   /* The Modal (background) */
 
+  #flightContent {
+    padding-bottom: 25px;
+  }
+
   /* Modal Content */
   .modal-content {
 
      background-color: #fefefe;
      padding: 20px;
-     border: .25rem solid red;
+     border: .25rem solid var(--tertiary-color);
      border-radius: .8rem;
 
   }
+
+  .modal-content-ul {
+    font-size: 25px;
+    font-weight: bolder;
+    padding-bottom: 5px;
+  }
   
+  .modal-content-li {
+    font-size: 18px;
+    line-height: 2.0;
+    text-indent: 35px;
+  }
+
   /* Add Animation */
   @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 

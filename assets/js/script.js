@@ -33,7 +33,7 @@ $("#search-flight").click(function () {
    var maxPrice = $("#price-range").val();
    var passengerNo = $("#adults").val();
 
-   console.log(departureCity, arrivalCity, departureDate, returnDate, classType, maxPrice, passengerNo)
+   //console.log(departureCity, arrivalCity, departureDate, returnDate, classType, maxPrice, passengerNo)
 
    // Let them know you're searching
    $(".carrier--title").text("Searching for Results ...")
@@ -47,7 +47,7 @@ $("#search-flight").click(function () {
          "method": "GET",
          "headers": {
 
-            "Authorization": "Bearer iDyuUnUg4kDeC3GYhgg5EOPVq44Z",
+            "Authorization": "Bearer xDptQZJu2JP5CVsv5LFgH2F8yNkZ",
          }
       })
       .then((response) => {
@@ -55,10 +55,10 @@ $("#search-flight").click(function () {
       })
 
       .then(function (departureResponse) {
-         console.log("Departure Response", departureResponse.data)
+         //console.log("Departure Response", departureResponse.data)
 
          if (!departureResponse.data) {
-            console.log("error")
+            //console.log("error")
             document.getElementById("myModal").setAttribute("class", "modal is-active")
          }
          var departureCityCode = departureResponse.data[0].iataCode
@@ -67,7 +67,7 @@ $("#search-flight").click(function () {
             {
                "method": "GET",
                "headers": {
-                  "Authorization": "Bearer iDyuUnUg4kDeC3GYhgg5EOPVq44Z",
+                  "Authorization": "Bearer xDptQZJu2JP5CVsv5LFgH2F8yNkZ",
                }
             })
             .then((response) => {
@@ -75,9 +75,9 @@ $("#search-flight").click(function () {
             })
             .then(function (arrivalResponse) {
 
-               console.log("Arrival Response", arrivalResponse.data)
+               //console.log("Arrival Response", arrivalResponse.data)
                if (!arrivalResponse.data) {
-                  console.log("error")
+                  //console.log("error")
                   document.getElementById("myModal").setAttribute("class", "modal is-active")
                }
 
@@ -89,9 +89,9 @@ $("#search-flight").click(function () {
                .then((response) => {return response.json()})
                .then(function(covidResults) {
                
-                  console.log("Heres the codes", departureCityCode, arrivalCityCode)
+                  //console.log("Heres the codes", departureCityCode, arrivalCityCode)
                   var url = `https://priceline-com-provider.p.rapidapi.com/v1/flights/search?sort_order=PRICE&location_departure=${departureCityCode}&date_departure=${departureDate}&class_type=${classType}&location_arrival=${arrivalCityCode}&itinerary_type=${flightType}&date_departure_return=${returnDate}&number_of_passengers=${passengerNo}&price_max=${maxPrice}&number_of_stops=1`
-                  console.log("heres provider coverage url", url)
+                  //console.log("heres provider coverage url", url)
                   
                   fetch(url,
                      {
@@ -103,7 +103,7 @@ $("#search-flight").click(function () {
                      })
                      .then((response) => { return response.json() })
                      .then(function(providerCoverage){
-                        console.log(providerCoverage);
+                        //console.log(providerCoverage);
                         $('.carrier--title').text('Provided Airlines Results');
                         if (providerCoverage && providerCoverage.filteredTripSummary != null) {
                            for (i=0; i < providerCoverage.filteredTripSummary.airline.length; i++) {
@@ -124,16 +124,16 @@ $("#search-flight").click(function () {
                         $("#flightContent").empty()//Empty Modal Content
                         var flightContainer = $("<div> </div>");
                      
-                        flightContainer.append("<ul> Important Information before you travel to " + arrivalState + ": </ul>");
+                        flightContainer.append("<ul class='modal-content-ul'> Important Information before you travel to " + arrivalState + " : </ul>");
                         
                         var positiveTestInc = covidResults.positiveIncrease
-                        flightContainer.append("<li> Number of increased positive test results from yesterday: " + positiveTestInc + "</li>")
+                        flightContainer.append("<li class='modal-content-li'> Number of increased positive test results from yesterday: " + positiveTestInc + "</li>")
                   
                         var currentHospitalization = covidResults.hospitalizedCurrently
-                        flightContainer.append("<li> Number of current hospitalization: " + currentHospitalization + "</li>");
+                        flightContainer.append("<li class='modal-content-li'> Number of current hospitalization: " + currentHospitalization + "</li>");
                         
                         var deathInc = covidResults.deathIncrease
-                        flightContainer.append("<li> Number of increased deaths from yesterday: " + deathInc + "</li>");
+                        flightContainer.append("<li class='modal-content-li'> Number of increased deaths from yesterday: " + deathInc + "</li>");
 
                         $("#flightContent").append(flightContainer)
                         $("#flightInfo").attr("class", "modal is-active")
