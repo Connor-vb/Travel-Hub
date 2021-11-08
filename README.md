@@ -11,7 +11,10 @@ People love to travel, but it’s been hard given that we’re currently living 
 * jQuery
 * Server-side APIs
 
-## Website
+## Website URL
+https://connor-vb.github.io/Travel-Hub/
+
+## Website Image
 ![screen shot ](https://user-images.githubusercontent.com/90042533/140604150-6bde5632-e4d1-4d01-87b5-030c937932be.png)
 
 ## Contribution
