@@ -151,6 +151,40 @@ $("#search-flight").click(function () {
             });
 
 
+      // Local Storage
+//       const storageInputd = document.querySelector('#dep-from');
+//       const storageInputa = document.querySelector('#dep-to');
+//       const textd = document.querySelector('depart-res');
+//       const texta = document.querySelector('arrive-res');
+//       const savedText = document.querySelector('.text');
+//       const storedInput = localStorage.getItem('textinput');
+// // arrive
+//       if(storageInputa) {
+//          texta.textContent = storedInput
+//       }
+
+//       storageInputa.addEventListener('input', letter => {
+//          texta.textContent = letter.target.value
+//       })
+
+//       const saveToLocalStorage = () => {
+//          localStorage.setItem('textinput', texta.textContent)
+//       }
+//       savedText.addEventListener('click', saveToLocalStorage)
+// // Depart
+//       if(storageInputa) {
+//          textd.textContent = storedInput
+//       }
+
+//       storageInputa.addEventListener('input', letter => {
+//          textd.textContent = letter.target.value
+//       })
+
+//       const saveToLocalStorage = () => {
+//          localStorage.setItem('textinput', textd.textContent)
+//       }
+//       savedText.addEventListener('click', saveToLocalStorage)
+
 
 
 
