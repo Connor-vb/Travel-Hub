@@ -120,7 +120,7 @@
             <div class="info-box">
               <!-- Trigger/Open The Modal -->
               <input type="submit" id="search-flight" value="SEARCH FLIGHTS" />
-              
+
               <!-- The Modal -->
               <div id="myModal" class="modal">
                 <div class="modal-background"></div>
@@ -153,22 +153,26 @@
     </div>
 
   </div>
-  
-  <div id="confirm"></div>
 
-    <!-- Flight Modal -->
-    <div id="flightInfo" class="modal">
-      <div class="modal-background"></div>
-      <div class="modal-content">
-        <div id="flightContent">
-        </div>
-        <button class="modal-close is-large" aria-label="close"></button>
-        <button id="cancel" class="button is-info is-pulled-right is-medium is-fullwidth">Close</button>
+  <!-- Flight Modal -->
+  <div id="flightInfo" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div id="flightContent">
       </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+      <button id="cancel" class="button is-info is-pulled-right is-medium is-fullwidth">Close</button>
     </div>
-    
   </div>
 
+  <div id="savedContent">
+    <h3 id="savedContent-header">Recent Trips</h3>
+    <br>
+    <div id="savedTrips"></div>
+    <br>
+    <button id="clear" class= "mt-2">Clear Trips</button>
+  </div>
+  
 
 
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>

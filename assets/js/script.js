@@ -15,12 +15,34 @@ $(function () {
    $("#return-date").datepicker("option", "dateFormat", "yy-mm-dd")
 });
 
-$("#search-flight").click(function (event) {
-   event.preventDefault();
-});
 
 
-$("#search-flight").click(function () {
+var savedSearches = [];
+
+var clearRecentTrips = function(){
+   savedSearches = [];
+
+   localStorage.clear();
+
+   $("#savedTrips").empty();
+}
+
+var setTripSearched = function () {
+   localStorage.setItem("trips", JSON.stringify(savedSearches));
+}
+
+var getTripSearched = function () {
+   var storedTrips = localStorage.getItem("trips")
+   if (storedTrips) {
+      savedSearches = JSON.parse(storedTrips);
+   }
+   console.log(savedSearches);
+   for (var i = 0; i < savedSearches.length; i++) {
+      $("#savedTrips").append("<p><button>" + savedSearches[i].departureCity + " to " + savedSearches[i].arrivalCity + "</button></p>")
+   }
+}
+
+var searchFlight = function () {
 
    var flightType = $("#flight-type").val();
    var depCity = $("#dep-from").val();
@@ -33,7 +55,21 @@ $("#search-flight").click(function () {
    var maxPrice = $("#price-range").val();
    var passengerNo = $("#adults").val();
 
-   //console.log(departureCity, arrivalCity, departureDate, returnDate, classType, maxPrice, passengerNo)
+   var tripParameters = {
+      flightType: flightType,
+      departureCity: departureCity,
+      arrivalCity: arrivalCity,
+      departureDate: departureDate,
+      returnDate: returnDate,
+      classType: classType,
+      maxPrice: maxPrice,
+      passengerNo: passengerNo
+   }
+
+   savedSearches.push(tripParameters);
+   setTripSearched();
+
+   $("#savedTrips").append("<button>" + departureCity + " to " + arrivalCity + "</button>");
 
    // Let them know you're searching
    $(".carrier--title").text("Searching for Results ...")
@@ -46,8 +82,7 @@ $("#search-flight").click(function () {
       {
          "method": "GET",
          "headers": {
-
-            "Authorization": "Bearer xDptQZJu2JP5CVsv5LFgH2F8yNkZ",
+            "Authorization": "Bearer uzznLDuOV1Z6hfQJ3dG3LhABxJer",
          }
       })
       .then((response) => {
@@ -67,7 +102,7 @@ $("#search-flight").click(function () {
             {
                "method": "GET",
                "headers": {
-                  "Authorization": "Bearer xDptQZJu2JP5CVsv5LFgH2F8yNkZ",
+                  "Authorization": "Bearer uzznLDuOV1Z6hfQJ3dG3LhABxJer",
                }
             })
             .then((response) => {
@@ -84,71 +119,88 @@ $("#search-flight").click(function () {
                var arrivalCityCode = arrivalResponse.data[0].iataCode;
                var arrivalState = arrivalResponse.data[0].address.stateCode;
                var arrivalStateCode = arrivalState.toLowerCase();
-               
-               fetch ('https://cors-anywhere.herokuapp.com/https://api.covidtracking.com/v1/states/'+ arrivalStateCode +'/current.json')
-               .then((response) => {return response.json()})
-               .then(function(covidResults) {
-               
-                  //console.log("Heres the codes", departureCityCode, arrivalCityCode)
-                  var url = `https://priceline-com-provider.p.rapidapi.com/v1/flights/search?sort_order=PRICE&location_departure=${departureCityCode}&date_departure=${departureDate}&class_type=${classType}&location_arrival=${arrivalCityCode}&itinerary_type=${flightType}&date_departure_return=${returnDate}&number_of_passengers=${passengerNo}&price_max=${maxPrice}&number_of_stops=1`
-                  //console.log("heres provider coverage url", url)
-                  
-                  fetch(url,
-                     {
-                        "method": "GET",
-                        "headers": {
-                           "x-rapidapi-host": "priceline-com-provider.p.rapidapi.com",
-                           "x-rapidapi-key": "59f7e69363mshd079e2ca36399cap1b8406jsn3dc47a20df7c"
-                        }
-                     })
-                     .then((response) => { return response.json() })
-                     .then(function(providerCoverage){
-                        //console.log(providerCoverage);
-                        $('.carrier--title').text('Provided Airlines Results');
-                        if (providerCoverage && providerCoverage.filteredTripSummary != null) {
-                           for (i=0; i < providerCoverage.filteredTripSummary.airline.length; i++) {
-                           var airlineCode = providerCoverage.filteredTripSummary.airline[i].code.toString()
-                           for(j=0; j <providerCoverage.airline.length; j++){
-                              if(airlineCode === providerCoverage.airline[j].code){
-                                 $(".carrier--list").append('<li>' + providerCoverage.airline[j].name + '</li>');//Replace Airline code with Airline Name
+
+               fetch('https://cors-anywhere.herokuapp.com/https://api.covidtracking.com/v1/states/' + arrivalStateCode + '/current.json')
+                  .then((response) => { return response.json() })
+                  .then(function (covidResults) {
+
+                     //console.log("Heres the codes", departureCityCode, arrivalCityCode)
+                     var url = `https://priceline-com-provider.p.rapidapi.com/v1/flights/search?sort_order=PRICE&location_departure=${departureCityCode}&date_departure=${departureDate}&class_type=${classType}&location_arrival=${arrivalCityCode}&itinerary_type=${flightType}&date_departure_return=${returnDate}&number_of_passengers=${passengerNo}&price_max=${maxPrice}&number_of_stops=1`
+                     //console.log("heres provider coverage url", url)
+
+                     fetch(url,
+                        {
+                           "method": "GET",
+                           "headers": {
+                              "x-rapidapi-host": "priceline-com-provider.p.rapidapi.com",
+                              "x-rapidapi-key": "59f7e69363mshd079e2ca36399cap1b8406jsn3dc47a20df7c"
+                           }
+                        })
+                        .then((response) => { return response.json() })
+                        .then(function (providerCoverage) {
+                           //console.log(providerCoverage);
+                           $('.carrier--title').text('Provided Airlines Results');
+                           if (providerCoverage && providerCoverage.filteredTripSummary != null) {
+                              for (i = 0; i < providerCoverage.filteredTripSummary.airline.length; i++) {
+                                 var airlineCode = providerCoverage.filteredTripSummary.airline[i].code.toString()
+                                 for (j = 0; j < providerCoverage.airline.length; j++) {
+                                    if (airlineCode === providerCoverage.airline[j].code) {
+                                       $(".carrier--list").append('<li>' + providerCoverage.airline[j].name + '</li>');//Replace Airline code with Airline Name
+                                    }
+                                 }
+                                 var fareAmount = providerCoverage.filteredTripSummary.airline[i].lowestTotalFare.amount.toString()
+
+                                 $(".carrier--list").append('<li> $' + fareAmount + '</li>');
                               }
-                           }
-                           var fareAmount = providerCoverage.filteredTripSummary.airline[i].lowestTotalFare.amount.toString()
-                              
-                              $(".carrier--list").append('<li> $' + fareAmount + '</li>');
-                           }
 
-                        } else {
-                           $(".carrier-no-found").text('Uh oh! Looks like there were no airlines found for this search.');
-                        }
-                        $("#flightContent").empty()//Empty Modal Content
-                        var flightContainer = $("<div> </div>");
-                     
-                        flightContainer.append("<ul class='modal-content-ul'> Important Information before you travel to " + arrivalState + " : </ul>");
-                        
-                        var positiveTestInc = covidResults.positiveIncrease
-                        flightContainer.append("<li class='modal-content-li'> Number of increased positive test results from yesterday: " + positiveTestInc + "</li>")
-                  
-                        var currentHospitalization = covidResults.hospitalizedCurrently
-                        flightContainer.append("<li class='modal-content-li'> Number of current hospitalization: " + currentHospitalization + "</li>");
-                        
-                        var deathInc = covidResults.deathIncrease
-                        flightContainer.append("<li class='modal-content-li'> Number of increased deaths from yesterday: " + deathInc + "</li>");
+                           } else {
+                              $(".carrier-no-found").text('Uh oh! Looks like there were no airlines found for this search.');
+                           }
+                           $("#flightContent").empty()//Empty Modal Content
+                           var flightContainer = $("<div> </div>");
 
-                        $("#flightContent").append(flightContainer)
-                        $("#flightInfo").attr("class", "modal is-active")
-                        $("#cancel").click(function(){
-                           $("#flightInfo").attr("class", "modal")
-                        });
-                  
+                           flightContainer.append("<ul class='modal-content-ul'> Important Information before you travel to " + arrivalState + " : </ul>");
+
+                           var positiveTestInc = covidResults.positiveIncrease
+                           flightContainer.append("<li class='modal-content-li'> Number of increased positive test results from yesterday: " + positiveTestInc + "</li>")
+
+                           var currentHospitalization = covidResults.hospitalizedCurrently
+                           flightContainer.append("<li class='modal-content-li'> Number of current hospitalization: " + currentHospitalization + "</li>");
+
+                           var deathInc = covidResults.deathIncrease
+                           flightContainer.append("<li class='modal-content-li'> Number of increased deaths from yesterday: " + deathInc + "</li>");
+
+                           $("#flightContent").append(flightContainer)
+                           $("#flightInfo").attr("class", "modal is-active")
+                           $("#cancel").click(function () {
+                              $("#flightInfo").attr("class", "modal")
+                           });
+
                         })
                         .catch(err => {
                            alert(err);
                         });
-                     });
                   });
-               });
             });
+      });
+};
+
+
+$("#clear").click(function (){
+   clearRecentTrips();
+})
+
+$(document).ready(function (){
+   getTripSearched();
+
+   $("#search-flight").click(function (event) {
+   event.preventDefault();
+   });
+
+   $("#search-flight").click(function () {
+      searchFlight();
+   })
+})
 
 
       // Local Storage

@@ -90,7 +90,7 @@ header nav ul li a:hover {
 .navbar {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   background-color: var(--tertiary-color);
 }
 
@@ -113,8 +113,8 @@ header nav ul li a:hover {
   align-items: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   border-radius: 15px;
-  border-radius: 15px;
 }
+
 #search-header h1 {
   color: #FFF;
   margin-left: 20px;
@@ -204,12 +204,65 @@ header nav ul li a:hover {
   display: flex;
   justify-content: center;
 }
-#flight-search input[type=submit] {
+
+#flight-search input[type=submit], #clear {
   background: #A8DADC;
   color: #F1FAEE;
   padding: 0;
   height: 50px;
   font-size: 1.2em;
+}
+
+#savedContent {
+  border: 1px var(--tertiary-color);
+  margin: 10px 0 10px 0;
+  width: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#savedContent h3 {
+  color: #FFF;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+#savedContent-header {
+ height: 80px;
+  background: var(--tertiary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  width: 100%;
+}
+
+#clear {
+  width: 60%;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px;
+  padding: 5px;
+  font-size: 20px;
+}
+
+#savedTrips button {
+  margin: 8px auto;
+  padding: 10px;
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 18px;
+  /* width: 120%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Calender */
@@ -290,7 +343,6 @@ table td {
   border-bottom: 1px solid whitesmoke;
   margin: 20px;
 }
-
 
 .carrier li, .carrier div {
   color: white;

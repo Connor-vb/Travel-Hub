@@ -8,22 +8,22 @@ People love to travel, but it’s been hard given that we’re currently living 
 * CSS
 * JavaScript
 * Bulma
+* jQuery
+* Server-side APIs
 
 ## Website
 ![screen shot ](https://user-images.githubusercontent.com/90042533/140604150-6bde5632-e4d1-4d01-87b5-030c937932be.png)
 
 ## Contribution
-- Monika Kothari
-- Hares N.
-- Conner Brokclin
-- Kate Hamilton
-- Ashley Cho
-
+- Monika Kothari (github: @mkothari93)
+- Hares N. (github: @greenlight510)
+- Connor Van Brocklin (github: @Connor-vb)
+- Kate Hamilton (github: @Katehamilton1)
+- Ashley Cho (github: @acho93)
 
 ### Get a new Token Copy the below into your terminal
 ```
 curl "https://test.api.amadeus.com/v1/security/oauth2/token" \
      -H "Content-Type: application/x-www-form-urlencoded" \
      -d "grant_type=client_credentials&client_id=dRQ2cUky8YYkgqDXFPhcAS9jRHcvVUGm&client_secret=vspcIsnVGArIGKur"
-
 ```
